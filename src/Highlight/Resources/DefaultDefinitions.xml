@@ -4,7 +4,7 @@
     <default>
       <font name="Courier New" size="11" style="regular" foreColor="black" backColor="transparent"/>
     </default>
-    <pattern name="ServerSideBlock" type="block" beginsWith="&amp;lt;%" endsWith="%&amp;gt;">
+    <pattern name="ServerSideBlock" type="block" beginsWith="&lt;%" endsWith="%&gt;">
       <font name="Courier New" size="11" style="regular" foreColor="black" backColor="yellow"/>
     </pattern>
     <pattern name="Markup" type="markup" highlightAttributes="true">
@@ -256,7 +256,7 @@
       <word>out</word>
     </pattern>
     <pattern name="Statement" type="word">
-      <font name="Courier New" size="11" style="regular" foreColor="blue" backColor="transparent"/>
+      <font name="Courier New" size="11" style="regular" foreColor="#8F08C4" backColor="transparent"/>
       <word>if</word>
       <word>else</word>
       <word>switch</word>
@@ -326,7 +326,7 @@
       <word>string</word>
     </pattern>
     <pattern name="Operator" type="word">
-      <font name="Courier New" size="11" style="regular" foreColor="red" backColor="transparent"/>
+      <font name="Courier New" size="11" style="regular" foreColor="black" backColor="transparent"/>
       <word>+</word>
       <word>-</word>
       <word>=</word>
@@ -336,11 +336,14 @@
       <word>&amp;</word>
       <word>|</word>
     </pattern>
-    <pattern name="String" type="block" beginsWith="&amp;quot;" endsWith="&amp;quot;" escapesWith="\">
-      <font name="Courier New" size="11" style="regular" foreColor="#666666" backColor="transparent"/>
+    <pattern name="String" type="block" beginsWith="&quot;" endsWith="&quot;" escapesWith="\">
+      <font name="Courier New" size="11" style="regular" foreColor="#A31515" backColor="transparent"/>
     </pattern>
-    <pattern name="VerbatimString" type="block" beginsWith="@&amp;quot;" endsWith="&amp;quot;">
-      <font name="Courier New" size="11" style="regular" foreColor="#666666" backColor="transparent"/>
+    <pattern name="VerbatimString" type="block" beginsWith="@&quot;" endsWith="&quot;">
+      <font name="Courier New" size="11" style="regular" foreColor="#A31515" backColor="transparent"/>
+    </pattern>
+    <pattern name="Char" type="block" beginsWith="'" endsWith="'" escapesWith="\">
+      <font name="Courier New" size="11" style="regular" foreColor="#A31515" backColor="transparent"/>
     </pattern>
     <pattern name="Comment" type="block" beginsWith="//" endsWith="\n">
       <font name="Courier New" size="11" style="regular" foreColor="green" backColor="transparent"/>
@@ -348,8 +351,11 @@
     <pattern name="MultiLineComment" type="block" beginsWith="/*" endsWith="*/">
       <font name="Courier New" size="11" style="regular" foreColor="green" backColor="transparent"/>
     </pattern>
+    <pattern name="Method" type="block" rawRegex="[\. ]([\w]+)\(">
+      <font name="Courier New" size="11" style="regular" foreColor="#74531F" backColor="transparent"/>
+    </pattern>
     <pattern name="PreprocessorDirective" type="word">
-      <font name="Courier New" size="11" style="regular" foreColor="blue" backColor="transparent"/>
+      <font name="Courier New" size="11" style="regular" foreColor="#808080" backColor="transparent"/>
       <word>#if</word>
       <word>#else</word>
       <word>#elif</word>
@@ -1378,7 +1384,7 @@
     <default>
       <font name="Courier New" size="11" style="regular" foreColor="black" backColor="transparent"/>
     </default>
-    <pattern name="MultiLineComment" type="block" beginsWith="&amp;lt;!--" endsWith="--&amp;gt;">
+    <pattern name="MultiLineComment" type="block" beginsWith="&lt;!--" endsWith="--&gt;">
       <font name="Courier New" size="11" style="regular" foreColor="green" backColor="transparent"/>
     </pattern>
     <pattern name="Markup" type="markup" highlightAttributes="true">
@@ -6633,7 +6639,7 @@
     <default>
       <font name="Courier New" size="11" style="regular" foreColor="black" backColor="transparent"/>
     </default>
-    <pattern name="MultiLineComment" type="block" beginsWith="&amp;lt;!-" endsWith="-&amp;gt;">
+    <pattern name="MultiLineComment" type="block" beginsWith="&lt;!-" endsWith="-&gt;">
       <font name="Courier New" size="11" style="regular" foreColor="green" backColor="transparent"/>
     </pattern>
     <pattern name="Markup" type="markup" highlightAttributes="true">

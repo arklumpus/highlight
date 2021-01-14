@@ -6,7 +6,13 @@ namespace Highlight.Configuration
     {
         public DefaultConfiguration()
         {
-            XmlDocument = XDocument.Parse(Resources.DefaultDefinitions);
+            using (System.IO.Stream sr = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Highlight.Resources.DefaultDefinitions.xml"))
+            {
+                using (System.IO.StreamReader reader = new System.IO.StreamReader(sr))
+                {
+                    XmlDocument = XDocument.Parse(reader.ReadToEnd());
+                }
+            }
         }
     }
 }

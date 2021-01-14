@@ -1,9 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
-    <Version>8.1.0</Version>
+    <TargetFrameworks>netstandard2.0;</TargetFrameworks>
+    <Version>9.0.0</Version>
+    <PackageId>Highlight.NoEngine</PackageId>
+    <Description>This is a fork of https://github.com/krdmllr/highlight , which is itself a fork adding .NET Standard support to https://github.com/thomasjo/highlight . This version removes all mentions of System.Drawing and all the rendering engines, leaving only the bare-bones extensible implementation.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/arklumpus/highlight</PackageProjectUrl>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="SixLabors.Fonts" Version="1.0.0-beta0008" />
+    <EmbeddedResource Include="Resources\DefaultDefinitions.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="VectSharp" Version="1.7.0" />
   </ItemGroup> 
 </Project>

@@ -1,7 +1,4 @@
-﻿using System.Drawing;
-using SixLabors.Fonts;
-
-namespace Highlight.Patterns
+﻿namespace Highlight.Patterns
 {
     public class Style
     {

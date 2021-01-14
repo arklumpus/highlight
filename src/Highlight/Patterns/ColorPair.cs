@@ -1,17 +1,17 @@
-﻿using System.Drawing;
+﻿using VectSharp;
 
 namespace Highlight.Patterns
 {
     public class ColorPair
     {
-        public Color ForeColor { get; set; }
-        public Color BackColor { get; set; }
+        public Colour ForeColor { get; set; }
+        public Colour BackColor { get; set; }
 
         public ColorPair()
         {
         }
 
-        public ColorPair(Color foreColor, Color backColor)
+        public ColorPair(Colour foreColor, Colour backColor)
         {
             ForeColor = foreColor;
             BackColor = backColor;

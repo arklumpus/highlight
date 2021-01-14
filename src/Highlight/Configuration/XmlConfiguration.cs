@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using Highlight.Extensions;
 using Highlight.Patterns;
-using SixLabors.Fonts;
+using VectSharp;
 
 namespace Highlight.Configuration
 {
@@ -90,8 +89,9 @@ namespace Highlight.Configuration
             var beginsWith = patternElement.GetAttributeValue("beginsWith");
             var endsWith = patternElement.GetAttributeValue("endsWith");
             var escapesWith = patternElement.GetAttributeValue("escapesWith");
+            string rawRegex = patternElement.GetAttributeValue("rawRegex");
 
-            return new BlockPattern(name, style, beginsWith, endsWith, escapesWith);
+            return new BlockPattern(name, style, beginsWith, endsWith, escapesWith, rawRegex);
         }
 
         private MarkupPattern GetMarkupPattern(XElement patternElement)
@@ -137,23 +137,27 @@ namespace Highlight.Configuration
 
         private ColorPair GetPatternColors(XElement fontElement)
         {
-            var foreColor = Color.FromName(fontElement.GetAttributeValue("foreColor"));
-            var backColor = Color.FromName(fontElement.GetAttributeValue("backColor"));
+            var foreColor = Colour.FromCSSString(fontElement.GetAttributeValue("foreColor")) ?? Colours.Black;
+            var backColor = Colour.FromCSSString(fontElement.GetAttributeValue("backColor")) ?? Colour.FromRgba(0, 0, 0, 0);
 
             return new ColorPair(foreColor, backColor);
         }
 
-        private Font GetPatternFont(XElement fontElement, Font defaultFont = null)
+        private Highlight.Patterns.Font GetPatternFont(XElement fontElement, Highlight.Patterns.Font? defaultFont = null)
         {
             var fontFamily = fontElement.GetAttributeValue("name");
             if (fontFamily != null) {
-                var emSize = fontElement.GetAttributeValue("size").ToSingle(11f);
-                var style = Enum<FontStyle>.Parse(fontElement.GetAttributeValue("style"), FontStyle.Regular, true);
-                 
-                return SystemFonts.CreateFont(fontFamily, emSize, style);
+
+                string style = fontElement.GetAttributeValue("style");
+
+                bool isBold = style.Contains("bold");
+                bool isItalic = style.Contains("italic") || style.Contains("oblique");
+
+
+                return new Patterns.Font(isBold, isItalic);
             }
 
-            return defaultFont;
+            return defaultFont ?? new Patterns.Font(false, false);
         }
 
         private ColorPair GetMarkupPatternBracketColors(XContainer patternElement)
@@ -199,19 +203,23 @@ namespace Highlight.Configuration
 
         private ColorPair GetDefinitionColors(XElement fontElement)
         {
-            var foreColor = Color.FromName(fontElement.GetAttributeValue("foreColor"));
-            var backColor = Color.FromName(fontElement.GetAttributeValue("backColor"));
+            var foreColor = Colour.FromCSSString(fontElement.GetAttributeValue("foreColor")) ?? Colours.Black;
+            var backColor = Colour.FromCSSString(fontElement.GetAttributeValue("backColor")) ?? Colour.FromRgba(0, 0, 0, 0);
 
             return new ColorPair(foreColor, backColor);
         }
 
-        private Font GetDefinitionFont(XElement fontElement)
+        private Highlight.Patterns.Font GetDefinitionFont(XElement fontElement)
         {
             var fontName = fontElement.GetAttributeValue("name");
             var fontSize = Convert.ToSingle(fontElement.GetAttributeValue("size"));
-            var fontStyle = (FontStyle) Enum.Parse(typeof(FontStyle), fontElement.GetAttributeValue("style"), true);
-             
-            return SystemFonts.CreateFont(fontName, fontSize, fontStyle);
+            string style = fontElement.GetAttributeValue("style");
+
+            bool isBold = style.Contains("bold");
+            bool isItalic = style.Contains("italic") || style.Contains("oblique");
+
+
+            return new Patterns.Font(isBold, isItalic);
         }
     }
 }

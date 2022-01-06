@@ -7,6 +7,6 @@ I also did some minor changes to the configuration (namely, allowing arbitrary r
 
 To use this version of the library, you need to create your own `Engine` implementation. I have no plans to provide documentation for this.
 
-This package is released under a MIT licence, but beware of the dependency on VectSharp (which is released under GPLv3)!
+This package is released under a MIT licence, but beware of the dependency on VectSharp (which is released under LGPLv3)!
 
 The NuGet package for this release is called [Highlight.NoEngine](https://www.nuget.org/packages/Highlight.NoEngine/).
